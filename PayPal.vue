@@ -1,16 +1,5 @@
 <template>
 <div class="relative bg-white dark:bg-dark-900">
-    <!-- <Payments
-        v-if="hasRole($page.props.auth.user, 'developer')"
-        :total="$props.total"
-        :paypal-card-fields="customCardFields"
-    />
-    <div
-        v-if="hasRole($page.props.auth.user, 'developer')"
-        class="border-t-2 dark:border-violet-400 relative my-10 lowercase"
-    >
-        <span class="absolute bg-white dark:bg-dark-900 text-sm px-2 left-1/2 -top-1/2 transform -translate-x-1/2 -translate-y-1/2 -mt-0.5">{{ __('Or') }}</span>
-    </div> -->
     <div
         id="paypal-button-container"
         class="w-full"
@@ -281,33 +270,6 @@ export default {
                         }))
                         .post(_route('shop.order.update', orderID.value));
                     });
-
-                    // return actions.subscription.get().then((details) => {
-                    //     const custom_subscription_details = {
-                    //         billing_info: details.billing_info,
-                    //         id: details.id,
-                    //         order_id: data.orderID,
-                    //         plan_id: details.plan_id,
-                    //         start_time: details.start_time,
-                    //         subscriber: details.subscriber,
-                    //         status: details.status,
-                    //         status_changed_by: details.status_changed_by,
-                    //         status_update_time: details.status_update_time,
-                    //         create_time: details.create_time
-                    //     }
-
-                    //     props.form
-                    //     .transform((dataForm) => ({
-                    //         ...dataForm,
-                    //         payment: selectedPayment.value,
-                    //         total: Number(props.total).toFixed(2),
-                    //         order_status: 'completed',
-                    //         transaction_id: data.orderID,
-                    //         is_subscription: isSubscription,
-                    //         subscription: custom_subscription_details
-                    //     }))
-                    //     .post(_route('shop.order.update', orderID.value));
-                    // })
                 }
             },
             onCancel: function (data, actions) {
@@ -454,10 +416,6 @@ export default {
         } else {
             // Init order function
             delete PAYPAL_BUTTONS_CONFIG['createSubscription']
-
-            // PAYPAL_BUTTONS_CONFIG['fundingSource'] = 'card'
-            // PAYPAL_BUTTONS_CONFIG['style']['color'] = 'black'
-            // PAYPAL_BUTTONS_CONFIG['style']['shape'] = 'pill'
         }
 
         const customCardFields = ref(null);
